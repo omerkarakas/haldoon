@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main-container {
+  margin: 30px;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.img-khaldun {
+  border-radius: 20px;
+}
+
+.navigation-icon {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.did-you-mean {
+  text-decoration: none;
+  color: #1654b8;
+  font-style: italic;
+  cursor: pointer;
+}
