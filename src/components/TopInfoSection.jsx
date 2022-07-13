@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { SearchContext } from '../SearchContext';
 
-function TopInfoSection() {
-  const { searchTerm, setSearchTerm, searchResults, searchInternet } =
+function TopInfoSection({ term }) {
+  const { lastSearchTerm, setSearchTerm, searchResults, searchInternet } =
     useContext(SearchContext);
 
   return (
     <>
-      <h4>Showing results for {searchTerm}</h4>
+      <h4>Showing results for {lastSearchTerm}</h4>
       {searchResults.didUMean && (
         <h4>
           Did you mean:{' '}

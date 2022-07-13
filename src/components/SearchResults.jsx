@@ -10,8 +10,21 @@ import {
 } from './SearchResults.styles';
 
 function SearchResults() {
-  const { searchTerm, searchResults } = useContext(SearchContext);
+  const { lastSearchTerm, searchResults } = useContext(SearchContext);
 
+  if (searchResults.totalCount === 0) {
+    return (
+      <>
+        <p>Your search - {lastSearchTerm} - did not match any documents.</p>
+        <p>Suggestions:</p>
+        <ul>
+          <li>Make sure that all words are spelled correctly.</li>
+          <li>Try different keywords.</li>
+          <li>Try more general keywords.</li>
+        </ul>
+      </>
+    );
+  }
   return (
     <SearchResultsContainer>
       <hr />

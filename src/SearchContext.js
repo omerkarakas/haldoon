@@ -3,10 +3,12 @@ import axios from 'axios';
 const SearchContext = createContext();
 
 const SearchContextProvider = ({ children }) => {
-  const [searchTerm, setSearchTerm] = useState('merhaba');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [lastSearchTerm, setLastSearchTerm] = useState('');
+
   const [searchResults, setSearchResults] = useState([]);
   const [searchParams, setSearchParams] = useState({
-    q: 'enter a text',
+    q: '',
     pageNumber: '1',
     pageSize: '10',
     autoCorrect: 'true',
@@ -24,16 +26,20 @@ const SearchContextProvider = ({ children }) => {
       },
     };
 
-    console.log('search...');
-    axios
-      .request(options)
-      .then(function (response) {
-        //console.log(response.data);
-        setSearchResults(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    if (searchTerm.length > 2) {
+      console.log('search...');
+      setLastSearchTerm(searchTerm);
+
+      axios
+        .request(options)
+        .then(function (response) {
+          //console.log(response.data);
+          setSearchResults(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
   };
 
   useEffect(() => {
@@ -67,6 +73,8 @@ const SearchContextProvider = ({ children }) => {
         searchInternet,
         currentPage,
         setCurrentPage,
+        lastSearchTerm,
+        setLastSearchTerm,
       }}
     >
       {children}

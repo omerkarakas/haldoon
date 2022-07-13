@@ -5,14 +5,20 @@ import React from 'react';
 import { SearchFormContainer } from './SearchForm.styles';
 
 function SearchForm() {
-  const { searchTerm, setSearchTerm, searchInternet, setCurrentPage } =
-    useContext(SearchContext);
+  const {
+    searchTerm,
+    setSearchTerm,
+    searchInternet,
+    setCurrentPage,
+    setLastSearchTerm,
+  } = useContext(SearchContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchTerm.length > 2) {
       setCurrentPage(1);
       searchInternet();
+      setLastSearchTerm(searchTerm);
     }
   };
 
