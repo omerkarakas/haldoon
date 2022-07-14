@@ -7,28 +7,29 @@ const SearchContextProvider = ({ children }) => {
   const [lastSearchTerm, setLastSearchTerm] = useState('');
 
   const [searchResults, setSearchResults] = useState([]);
-  const [searchParams, setSearchParams] = useState({
-    q: '',
-    pageNumber: '1',
-    pageSize: '10',
-    autoCorrect: 'true',
-  });
+
   const [currentPage, setCurrentPage] = useState(1);
 
-  const searchInternet = () => {
-    const options = {
-      method: 'GET',
-      url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI',
-      params: searchParams,
-      headers: {
-        'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-        'X-RapidAPI-Host': process.env.REACT_APP_API_HOST,
-      },
-    };
-
-    if (searchTerm.length > 2) {
-      console.log('search...');
+  const searchInternet = (term) => {
+    if (term.length > 2) {
+      console.log('search for : ', term);
       setLastSearchTerm(searchTerm);
+      setSearchTerm(term);
+
+      const options = {
+        method: 'GET',
+        url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI',
+        params: {
+          q: term,
+          pageNumber: currentPage.toString(),
+          pageSize: '10',
+          autoCorrect: 'true',
+        },
+        headers: {
+          'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+          'X-RapidAPI-Host': process.env.REACT_APP_API_HOST,
+        },
+      };
 
       axios
         .request(options)
@@ -39,28 +40,14 @@ const SearchContextProvider = ({ children }) => {
         .catch(function (error) {
           console.error(error);
         });
+    } else {
+      console.log('at least three characters required');
     }
   };
 
   useEffect(() => {
-    console.log('ue', 'st', searchTerm);
-    setSearchParams({
-      q: searchTerm,
-      pageNumber: currentPage.toString(),
-      pageSize: '10',
-      autoCorrect: 'true',
-    });
-  }, [searchTerm]);
-
-  useEffect(() => {
     console.log('ue', 'cp', currentPage);
-    setSearchParams({
-      q: searchTerm,
-      pageNumber: currentPage.toString(),
-      pageSize: '10',
-      autoCorrect: 'true',
-    });
-    searchInternet();
+    searchInternet(searchTerm);
   }, [currentPage]);
 
   return (

@@ -17,6 +17,7 @@ export const PaginationLinksContainer = styled.div`
 
     .active-page-link {
       color: black;
+      font-size: medium;
       cursor: default;
     }
   }

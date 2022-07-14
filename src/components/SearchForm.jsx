@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { SearchContext } from '../SearchContext';
 
-import React from 'react';
+import React, { Component } from 'react';
 import { SearchFormContainer } from './SearchForm.styles';
 
 function SearchForm() {
@@ -15,16 +15,22 @@ function SearchForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('submit');
     if (searchTerm.length > 2) {
       setCurrentPage(1);
-      searchInternet();
-      setLastSearchTerm(searchTerm);
+      searchInternet(searchTerm);
     }
+  };
+
+  const submitForm = () => {
+    this.formRef.dispatchEvent(
+      new Event('submit', { bubbles: true, cancelable: true })
+    );
   };
 
   return (
     <SearchFormContainer>
-      <form onSubmit={handleSubmit} className="search-form">
+      <form onSubmit={handleSubmit} className="search-form" id="search-form">
         <h1>Haldoon</h1>
         <div>
           <input

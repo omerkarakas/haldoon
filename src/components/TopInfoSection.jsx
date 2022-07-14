@@ -14,7 +14,7 @@ function TopInfoSection({ term }) {
           <span
             onClick={() => {
               setSearchTerm(searchResults.didUMean);
-              searchInternet();
+              searchInternet(searchResults.didUMean);
             }}
             className="did-you-mean"
           >
