@@ -3,6 +3,8 @@ import { SearchContext } from '../SearchContext';
 
 import React, { Component } from 'react';
 import { SearchFormContainer } from './SearchForm.styles';
+import { Button, Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
 function SearchForm() {
   const {
@@ -15,7 +17,7 @@ function SearchForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit');
+    // console.log('submit');
     if (searchTerm.length > 2) {
       setCurrentPage(1);
       searchInternet(searchTerm);
@@ -30,15 +32,25 @@ function SearchForm() {
 
   return (
     <SearchFormContainer>
+      <img src="haldoon.png" alt="Khaldun" className="img-khaldun" />
       <form onSubmit={handleSubmit} className="search-form" id="search-form">
-        <h1>Haldoon</h1>
-        <div>
-          <input
-            type="text"
+        <div className="search-form">
+          <Input
+            placeholder="What are you searching?"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            size="large"
           />
-          <button>Search</button>
+
+          <Button
+            type="primary"
+            htmlType="submit"
+            icon={<SearchOutlined />}
+            onCLicked={(e) => handleSubmit()}
+            size="large"
+          >
+            Search
+          </Button>
         </div>
       </form>
     </SearchFormContainer>

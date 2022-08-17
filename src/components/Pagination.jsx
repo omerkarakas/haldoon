@@ -36,7 +36,13 @@ function Pagination() {
           <GrFormPrevious className="navigation-icon" onClick={prevPage} />
         )}
         {searchResults.totalCount > 0 && (
-          <span className="pagination-center">Haldooooooon</span>
+          // <span className="pagination-center">Haldooooooon</span>
+          <img
+            src="haldoon-paging.png"
+            alt="paging"
+            width="200"
+            className="pagination-img"
+          />
         )}
         {showNextLink && (
           <GrFormNext className="navigation-icon" onClick={nextPage} />

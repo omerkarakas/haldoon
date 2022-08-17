@@ -1,15 +1,16 @@
 import { useContext } from 'react';
 import { SearchContext } from './SearchContext';
-import HomePage from './pages/HomePage';
-import ResultsPage from './pages/ResultsPage';
+import Home from './pages/Home';
 
 function App() {
-  const { searchResults } = useContext(SearchContext);
+  // const { searchResults } = useContext(SearchContext);
+  return <Home />;
 
-  //useEffect(() => {}, []);
-
-  if (searchResults.length === 0) return <HomePage />;
-  else return <ResultsPage />;
+  // if (searchResults.length === 0) {
+  //   return <HomePage />;
+  // } else {
+  //   return <ResultsPage />;
+  // }
 }
 
 export default App;

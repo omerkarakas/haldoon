@@ -1,20 +1,21 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 const SearchContext = createContext();
 
 const SearchContextProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [lastSearchTerm, setLastSearchTerm] = useState('');
-
   const [searchResults, setSearchResults] = useState([]);
-
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [searchedOnce, setSearchedOnce] = useState(false);
 
-  const searchInternet = (term) => {
+  const searchInternet = async (term) => {
     if (term.length > 2) {
       console.log('search for : ', term);
-      setLastSearchTerm(searchTerm);
-      setSearchTerm(term);
+
+      setLoading(true);
+      setSearchResults(null);
 
       const options = {
         method: 'GET',
@@ -36,10 +37,15 @@ const SearchContextProvider = ({ children }) => {
         .then(function (response) {
           //console.log(response.data);
           setSearchResults(response.data);
+          setLoading(false);
         })
         .catch(function (error) {
           console.error(error);
         });
+
+      setLastSearchTerm(searchTerm);
+      setSearchTerm(term);
+      setSearchedOnce(true);
     } else {
       console.log('at least three characters required');
     }
@@ -62,6 +68,8 @@ const SearchContextProvider = ({ children }) => {
         setCurrentPage,
         lastSearchTerm,
         setLastSearchTerm,
+        loading,
+        searchedOnce,
       }}
     >
       {children}

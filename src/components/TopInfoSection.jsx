@@ -5,6 +5,8 @@ function TopInfoSection({ term }) {
   const { lastSearchTerm, setSearchTerm, searchResults, searchInternet } =
     useContext(SearchContext);
 
+  if (!searchResults) return '';
+
   return (
     <>
       <h4>Showing results for {lastSearchTerm}</h4>

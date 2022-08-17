@@ -25,4 +25,9 @@ export const PaginationLinksContainer = styled.div`
   .pagination-center {
     vertical-align: middle;
   }
+
+  .pagination-img {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
 `;
