@@ -1,19 +1,14 @@
 import { useContext } from 'react';
 import { SearchContext } from '../SearchContext';
 
-import React, { Component } from 'react';
+import React from 'react';
 import { SearchFormContainer } from './SearchForm.styles';
 import { Button, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
 function SearchForm() {
-  const {
-    searchTerm,
-    setSearchTerm,
-    searchInternet,
-    setCurrentPage,
-    setLastSearchTerm,
-  } = useContext(SearchContext);
+  const { searchTerm, setSearchTerm, searchInternet, setCurrentPage } =
+    useContext(SearchContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,11 +19,11 @@ function SearchForm() {
     }
   };
 
-  const submitForm = () => {
-    this.formRef.dispatchEvent(
-      new Event('submit', { bubbles: true, cancelable: true })
-    );
-  };
+  // const submitForm = () => {
+  //   this.formRef.dispatchEvent(
+  //     new Event('submit', { bubbles: true, cancelable: true })
+  //   );
+  // };
 
   return (
     <SearchFormContainer>
@@ -46,7 +41,7 @@ function SearchForm() {
             type="primary"
             htmlType="submit"
             icon={<SearchOutlined />}
-            onCLicked={(e) => handleSubmit()}
+            onClick={(e) => handleSubmit()}
             size="large"
           >
             Search

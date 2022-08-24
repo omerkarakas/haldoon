@@ -4,7 +4,7 @@ import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { PaginationLinksContainer } from './Pagination.styles';
 
 function Pagination() {
-  const { searchTerm, currentPage, setCurrentPage, searchResults } =
+  const { currentPage, setCurrentPage, searchResults } =
     useContext(SearchContext);
   const resultsCount = searchResults.totalCount;
   const pageLinksCount =

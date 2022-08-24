@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 import Loading from './Loading';
 import { Card } from 'antd';
 
-import { SearchResult, SearchResultsContainer } from './SearchResults.styles';
+import { SearchResultsContainer } from './SearchResults.styles';
 
 function SearchResults() {
   const { lastSearchTerm, searchResults, loading } = useContext(SearchContext);

@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 const SearchContext = createContext();
 
@@ -54,6 +54,7 @@ const SearchContextProvider = ({ children }) => {
   useEffect(() => {
     console.log('ue', 'cp', currentPage);
     searchInternet(searchTerm);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   return (

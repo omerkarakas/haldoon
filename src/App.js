@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { SearchContext } from './SearchContext';
 import Home from './pages/Home';
 
 function App() {
